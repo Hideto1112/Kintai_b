@@ -1,2 +1,6 @@
-<h1>StaticPages#top</h1>
-<p>Find me in app/views/static_pages/top.html.erb</p>
+<% provide(:title, "Top") %>
+<h1>勤怠管理システム</h1>
+<%= link_to "忘れずに！ここにログインボタンを作る", '#', class: "btn btn-primary btn-success btn-form" %>
+<p>
+  アカウント作成は<%= link_to "こちら", '#' %>から
+</p>
