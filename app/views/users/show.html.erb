@@ -49,9 +49,9 @@
       <% @attendances.each do |day| %>
         <tr>
           <td><%= l(day.worked_on, format: :short) %></td>
-          <td><%= $days_of_the_week[day.worked_on.wday] %></td>
-          <td><%= l(day.started_at, format: :hour) if day.started_at.present? %></td>
-          <td><%= l(day.started_at, format: :min) if day.started_at.present? %></td>
+          <td class=<%= "wday#{day.worked_on.wday}" %>><%= $days_of_the_week[day.worked_on.wday] %></td>
+          <td><%= l(day.started_at.floor_to(15.minutes), format: :hour) if day.started_at.present? %></td>
+          <td><%= l(day.started_at.floor_to(15.minutes), format: :min) if day.started_at.present? %></td>
           <td>
             <% if btn_text = attendance_state(day) %>
               <% if day.started_at.nil? %>
@@ -59,8 +59,8 @@
               <% end %>
             <% end %>
           </td>
-          <td><%= l(day.finished_at, format: :hour) if day.finished_at.present? %></td>
-          <td><%= l(day.finished_at, format: :min) if day.finished_at.present? %></td>
+          <td><%= l(day.finished_at.floor_to(15.minutes), format: :hour) if day.finished_at.present? %></td>
+          <td><%= l(day.finished_at.floor_to(15.minutes), format: :min) if day.finished_at.present? %></td>
           <td>
             <% if btn_text = attendance_state(day) %>
               <% if day.started_at.present? %>
@@ -70,7 +70,7 @@
           </td>
           <td>
             <% if day.started_at.present? && day.finished_at.present? %>
-              <%= str_times = working_times(day.started_at, day.finished_at) %>
+              <%= str_times = working_times(day.started_at.floor_to(15.minutes), day.finished_at.floor_to(15.minutes)) %>
               <% @total_working_times = @total_working_times.to_f + str_times.to_f %>
             <% end %>
           </td>

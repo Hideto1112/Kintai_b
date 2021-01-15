@@ -14,6 +14,11 @@
   margin-bottom: 10px;
 }
 
+.search p {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
 /* ユーザー勤怠情報テーブル */
 
 #table-attendances {
@@ -27,6 +32,13 @@
   }
 }
 
+.wday0 {
+  color: red;
+}
+
+.wday6{
+  color: blue;
+}
 /* 入力フォーム */
 
 .label-signup {
