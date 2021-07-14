@@ -59,6 +59,8 @@ class UsersController < ApplicationController
     end
     redirect_to users_url
   end
+  
+  
 
   private
 

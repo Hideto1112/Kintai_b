@@ -45,13 +45,21 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
+  def request_overtime
+    @user = User.find(params[:id])
+    @attendance = @user.attendances.find_by(worked_on: params[:day])
+    #debugger
+  end
+  
+
   private
     # 1ヶ月分の勤怠情報を扱います。
     def attendances_params
       params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
     end
     
-    # beforeフィルター
+    
+       # beforeフィルター
     
     # 管理権限者、または現在ログインしているユーザーを許可します。
     def admin_or_correct_user
